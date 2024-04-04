@@ -11,6 +11,7 @@
       test:
         name: Test
         runs-on: ubuntu-latest
+        environment: dev
     
         steps:
           - name: Checkout
@@ -21,7 +22,10 @@
         
           - name: Install dependencies
             run: npm ci
+
+          - name: Build
+            run: npm run build
     
-          - name: Install dependencies
+          - name: upload to r2
             run: |
-                echo hello/${{ github.sha }}/world
+                npx wrangler r2 object put frontend-versions/${{ github.sha }} --file=build/ 
