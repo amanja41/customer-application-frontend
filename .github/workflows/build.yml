@@ -24,4 +24,4 @@
     
           - name: Install dependencies
             run: |
-                echo hello/{{ github.sha }}/world
+                echo hello/${{ github.sha }}/world
